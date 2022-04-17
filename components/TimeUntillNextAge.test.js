@@ -2,6 +2,7 @@ import { render, screen } from "@testing-library/react";
 import TimeUntillNextAge from "./TimeUntillNextAge";
 import "@testing-library/jest-dom";
 import moment from "moment";
+import { MY_BIRTH_DATE } from "../utils/constants";
 
 describe("TimeUntilNextAge", () => {
   it.each([
@@ -29,7 +30,12 @@ describe("TimeUntilNextAge", () => {
     "should render component with $expectedString given $dateTime",
     async (dateTime, expectedString) => {
       var dateTimeAsIso = new Date(dateTime).toISOString();
-      render(<TimeUntillNextAge todayAsMoment={moment(dateTimeAsIso)} />);
+      render(
+        <TimeUntillNextAge
+          todayAsMoment={moment(dateTimeAsIso)}
+          myBirthDate={MY_BIRTH_DATE}
+        />
+      );
 
       const timeUntillNextBirthdayElement = await screen.findByText(
         /I will turn/i

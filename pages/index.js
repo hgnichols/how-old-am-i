@@ -3,6 +3,7 @@ import TimeUntillNextAge from "../components/TimeUntillNextAge";
 import styles from "../styles/Home.module.css";
 import Head from "next/head";
 import moment from "moment";
+import { MY_BIRTH_DATE } from "../utils/constants";
 
 function Home() {
   const todayAsMoment = moment().startOf("day");
@@ -17,10 +18,14 @@ function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className={styles.main}>
-        <CurrentAgeElement todayAsMoment={todayAsMoment} />
+        <CurrentAgeElement
+          todayAsMoment={todayAsMoment}
+          myBirthDate={MY_BIRTH_DATE}
+        />
         <TimeUntillNextAge
           className={styles.title}
           todayAsMoment={todayAsMoment}
+          myBirthDate={MY_BIRTH_DATE}
         />
       </main>
 
