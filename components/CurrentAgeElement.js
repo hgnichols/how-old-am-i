@@ -6,13 +6,7 @@ function CurrentAgeElement(props) {
   return (
     <>
       <h1 className={styles.title}>
-        I am{" "}
-        {getAge(props.todayAsMoment, [
-          MY_BIRTH_DATE.birthYear,
-          MY_BIRTH_DATE.birthMonth,
-          MY_BIRTH_DATE.bitchDay,
-        ])}{" "}
-        years old as of today.
+        I am {getAge(props.todayAsMoment, MY_BIRTH_DATE)} years old as of today.
       </h1>
     </>
   );

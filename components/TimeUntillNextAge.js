@@ -81,11 +81,7 @@ function TimeUntillNextAge(props) {
     <>
       <h2 className={styles.description}>
         I will turn{" "}
-        {getAge(props.todayAsMoment, [
-          MY_BIRTH_DATE.birthYear,
-          MY_BIRTH_DATE.birthMonth,
-          MY_BIRTH_DATE.bitchDay,
-        ]) +
+        {getAge(props.todayAsMoment, MY_BIRTH_DATE) +
           (() => {
             return IsItMyBirthday(props.todayAsMoment, MY_BIRTH_DATE) ? 0 : 1;
           })()}{" "}
