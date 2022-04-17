@@ -1,5 +1,8 @@
 export function getAge(today, birthDate) {
-  const age = today.diff(birthDate, "years");
+  const birthDateAsDate = new Date(birthDate);
+  const birthDateAsIsoString = birthDateAsDate.toISOString();
+
+  const age = today.diff(birthDateAsIsoString, "years");
 
   return age;
 }

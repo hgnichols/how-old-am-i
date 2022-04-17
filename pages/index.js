@@ -5,6 +5,7 @@ import Head from "next/head";
 import moment from "moment";
 
 function Home() {
+  const todayAsMoment = moment();
   return (
     <div className={styles.container}>
       <Head>
@@ -15,8 +16,14 @@ function Home() {
         />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <CurrentAgeElement todayAsMoment={moment()} />
-      <TimeUntillNextAge todayAsMoment={moment()} />
+      <main className={styles.main}>
+        <CurrentAgeElement todayAsMoment={todayAsMoment} />
+        <TimeUntillNextAge
+          className={styles.title}
+          todayAsMoment={todayAsMoment}
+        />
+      </main>
+
       <footer className={styles.footer}>
         Yeah I made a website to tell me how old I am because I can't remember.
         😓
