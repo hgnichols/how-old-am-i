@@ -25,8 +25,8 @@ function Home() {
       </main>
 
       <footer className={styles.footer}>
-        Yeah I made a website to tell me how old I am because I can't remember.
-        😓
+        Yeah I made a website to tell me how old I am because I can&apos;t
+        remember. 😓
       </footer>
     </div>
   );
