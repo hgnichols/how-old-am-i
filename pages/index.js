@@ -5,7 +5,7 @@ import Head from "next/head";
 import moment from "moment";
 
 function Home() {
-  const todayAsMoment = moment();
+  const todayAsMoment = moment().startOf("day");
   return (
     <div className={styles.container}>
       <Head>
