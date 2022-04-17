@@ -9,11 +9,11 @@ function TimeUntillNextAge(props) {
     myBirthDay,
     myBirthMonth
   ) {
-    const myNextBirthDayDateAsIso = new Date([
+    const myNextBirthDayDateAsIso = new Date(
       GetYearOfNextBirthday(today, MY_BIRTH_DATE),
-      myBirthMonth,
-      myBirthDay,
-    ]).toISOString();
+      myBirthMonth - 1,
+      myBirthDay
+    ).toISOString();
     const myNextBirthDayDateAsMoment = moment(myNextBirthDayDateAsIso);
     const duration = moment.duration(myNextBirthDayDateAsMoment.diff(today));
 
@@ -27,11 +27,11 @@ function TimeUntillNextAge(props) {
   }
 
   function HasMyBirthDayPassed(today, birthDate) {
-    const myNextBirthDayDateAsIso = new Date([
+    const myNextBirthDayDateAsIso = new Date(
       today.year(),
-      birthDate.birthMonth,
-      birthDate.bitchDay,
-    ]).toISOString();
+      birthDate.birthMonth - 1,
+      birthDate.bitchDay
+    ).toISOString();
 
     const myNextBirthDayDateAsMoment = moment(myNextBirthDayDateAsIso);
     const duration = moment.duration(myNextBirthDayDateAsMoment.diff(today));
@@ -40,11 +40,11 @@ function TimeUntillNextAge(props) {
   }
 
   function IsItMyBirthday(today, birthDate) {
-    const myNextBirthDayDateAsIso = new Date([
+    const myNextBirthDayDateAsIso = new Date(
       today.year(),
-      birthDate.birthMonth,
-      birthDate.bitchDay,
-    ]).toISOString();
+      birthDate.birthMonth - 1,
+      birthDate.bitchDay
+    ).toISOString();
 
     const myNextBirthDayDateAsMoment = moment(myNextBirthDayDateAsIso);
     const duration = moment.duration(myNextBirthDayDateAsMoment.diff(today));
