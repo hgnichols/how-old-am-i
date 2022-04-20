@@ -1,5 +1,4 @@
-import Footer from "./footer";
-import styles from "../styles/Home.module.css";
+import Footer from "./Footer";
 
 export default function Layout({ children }) {
   return (
