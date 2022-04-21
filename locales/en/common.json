@@ -1,0 +1,13 @@
+{
+  "homeDescription": "How Old is this one person specifically",
+  "birthday": "Birthday",
+  "whenIsYourBirthday": "When is your birthday?",
+  "iAmCurrentAge": "I am {{currentAge}} years old as of today.",
+  "footerText": "Yeah I made a website to tell me how old I am because I can't remember. 😓",
+  "itsYourBirthday": "I will turn {{nextAge}}...right now! It's yo fucking birthday biiiiiiiiiiiitch.",
+  "iWillTurnWithMonthsAndDays": "I will turn {{nextAge}} in {{months}} months and {{days}} days.",
+  "iWillTurnWithMonths": "I will turn {{nextAge}} in {{months}} months.",
+  "iWillTurnWithDays": "I will turn {{nextAge}} in {{days}} days.",
+  "selectDate": "Select Date",
+  "commonPageTitle": "How Old am I?"
+}

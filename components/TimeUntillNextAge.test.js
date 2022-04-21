@@ -1,4 +1,4 @@
-import { render, screen } from "@testing-library/react";
+import { render, screen } from "../testingUtils/testUtils";
 import TimeUntillNextAge from "./TimeUntillNextAge";
 import "@testing-library/jest-dom";
 import moment from "moment";
@@ -20,11 +20,11 @@ describe("TimeUntilNextAge", () => {
     [[2024, 2, 28], "I will turn 29 in 7 months and 27 days."],
     [
       [2022, 10, 27],
-      "I will turn 27 in ...right now! It's yo fucking birthday biiiiiiiiiiiitch.",
+      "I will turn 27...right now! It's yo fucking birthday biiiiiiiiiiiitch.",
     ],
     [
       [2023, 10, 27],
-      "I will turn 28 in ...right now! It's yo fucking birthday biiiiiiiiiiiitch.",
+      "I will turn 28...right now! It's yo fucking birthday biiiiiiiiiiiitch.",
     ],
   ])(
     "should render component with $expectedString given $dateTime",
@@ -37,10 +37,9 @@ describe("TimeUntilNextAge", () => {
         />
       );
 
-      const timeUntillNextBirthdayElement = await screen.findByText(
-        /I will turn/i
-      );
-      expect(timeUntillNextBirthdayElement).toHaveTextContent(expectedString);
+      screen.debug();
+      const timeUntillNextBirthdayElement = screen.getByText(expectedString);
+      expect(timeUntillNextBirthdayElement).toBeInTheDocument();
     }
   );
 });

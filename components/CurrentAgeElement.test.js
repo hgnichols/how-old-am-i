@@ -1,8 +1,8 @@
-import { render, screen } from "@testing-library/react";
 import CurrentAgeElement from "./CurrentAgeElement";
 import "@testing-library/jest-dom";
 import moment from "moment";
 import { MY_BIRTH_DATE } from "../utils/constants";
+import { render, screen } from "../testingUtils/testUtils";
 
 describe("CurrentAgeElement", () => {
   it.each([

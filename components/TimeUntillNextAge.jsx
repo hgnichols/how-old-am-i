@@ -1,8 +1,11 @@
 import moment from "moment";
 import { getAge } from "../utils/ageCalculations";
 import styles from "../styles/Home.module.css";
+import useTranslation from "next-translate/useTranslation";
 
 function TimeUntillNextAge(props) {
+  const { t } = useTranslation("common");
+
   function calculateTimeRemainingUntilNextBirthday(
     today,
     myBirthDay,
@@ -38,7 +41,7 @@ function TimeUntillNextAge(props) {
     return duration < 0;
   }
 
-  function IsItMyBirthday(today, birthDate) {
+  function isItMyBirthday(today, birthDate) {
     const myNextBirthDayDateAsIso = new Date(
       today.year(),
       birthDate.birthMonth - 1,
@@ -51,51 +54,64 @@ function TimeUntillNextAge(props) {
     return duration == 0;
   }
 
-  function createRemianingTimeUntillBirthdayText(durationUntilBirthday) {
+  function createRemianingTimeUntillBirthdayText(
+    nextAge,
+    durationUntilBirthday
+  ) {
     const monthsRemaining = durationUntilBirthday.months();
     const daysRemaining = durationUntilBirthday.days();
 
     const anyMonthsRemaining = monthsRemaining > 0;
     const anyDaysRemaining = daysRemaining > 0;
 
-    if (monthsRemaining === 0 && daysRemaining === 0) {
-      return "...right now! It's yo fucking birthday biiiiiiiiiiiitch.";
+    if (!anyMonthsRemaining && !anyDaysRemaining) {
+      return t("itsYourBirthday", { nextAge: nextAge });
     }
 
-    const monthsRemainingStringFragment = anyMonthsRemaining
-      ? `${monthsRemaining} months`
-      : "";
-    const daysRemainingStringFrament = anyDaysRemaining
-      ? `${daysRemaining} days`
-      : "";
+    if (anyMonthsRemaining && anyDaysRemaining) {
+      return t("iWillTurnWithMonthsAndDays", {
+        nextAge: nextAge,
+        months: monthsRemaining,
+        days: daysRemaining,
+      });
+    }
 
-    const createdString = `${monthsRemainingStringFragment}${(() => {
-      return anyMonthsRemaining && anyDaysRemaining ? " and " : "";
-    })()}${daysRemainingStringFrament}.`;
+    if (anyMonthsRemaining && !anyDaysRemaining) {
+      return t("iWillTurnWithMonths", {
+        nextAge: nextAge,
+        months: monthsRemaining,
+      });
+    }
 
-    return createdString;
+    if (!anyMonthsRemaining && anyDaysRemaining) {
+      return t("iWillTurnWithDays", {
+        nextAge: nextAge,
+        days: daysRemaining,
+      });
+    }
   }
 
+  function getNextAge(currentAge) {
+    const amountToAddToFindNextAge = isItMyBirthday(
+      props.todayAsMoment,
+      props.myBirthDate
+    )
+      ? 0
+      : 1;
+
+    return currentAge + amountToAddToFindNextAge;
+  }
   return (
-    <>
-      <h2 className={styles.description}>
-        I will turn{" "}
-        {getAge(props.todayAsMoment, props.myBirthDate) +
-          (() => {
-            return IsItMyBirthday(props.todayAsMoment, props.myBirthDate)
-              ? 0
-              : 1;
-          })()}{" "}
-        in{" "}
-        {createRemianingTimeUntillBirthdayText(
-          calculateTimeRemainingUntilNextBirthday(
-            props.todayAsMoment,
-            props.myBirthDate.bitchDay,
-            props.myBirthDate.birthMonth
-          )
-        )}
-      </h2>
-    </>
+    <h2 className={styles.description}>
+      {createRemianingTimeUntillBirthdayText(
+        getNextAge(getAge(props.todayAsMoment, props.myBirthDate)),
+        calculateTimeRemainingUntilNextBirthday(
+          props.todayAsMoment,
+          props.myBirthDate.bitchDay,
+          props.myBirthDate.birthMonth
+        )
+      )}
+    </h2>
   );
 }
 
